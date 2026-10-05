@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "yuktisahu-dev",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // Unknown URLs fall back to the app shell so /about, /blog etc. work on refresh.
+    "not_found_handling": "single-page-application",
+    // The worker only runs for the live-feed endpoints; everything else is served as static files.
+    "run_worker_first": ["/api/*"]
+  }
+}

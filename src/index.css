@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  * {
+    @apply border-ink/10 dark:border-nightpaper/10;
+  }
+  html {
+    scroll-behavior: smooth;
+    font-size: 17px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  body {
+    @apply bg-paper text-ink dark:bg-night dark:text-nightpaper font-body antialiased leading-relaxed;
+    background-image: theme('backgroundImage.grain');
+  }
+  ::selection {
+    @apply bg-ochre/40 text-ink;
+  }
+  /* iOS Safari zooms the viewport on focusing any input under 16px — force 16px on
+     small screens regardless of the Tailwind text-sm class used in markup. */
+  @media (max-width: 640px) {
+    input, textarea, select {
+      font-size: 16px;
+    }
+  }
+  :focus-visible {
+    outline: 2px solid #B8862E;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+    font-variation-settings: 'SOFT' 0, 'WONK' 1;
+  }
+}
+
+@layer components {
+  /* Printed catalogue label: typewriter caps with a short rule, used to mark every section. */
+  .catalog-tab {
+    @apply inline-flex items-center gap-2 font-mono font-bold text-[11px] uppercase tracking-[0.2em]
+           text-brick dark:text-brick-light;
+  }
+  .catalog-tab::before {
+    content: '';
+    @apply block w-5 h-[2px] bg-brick/70 dark:bg-brick-light/70;
+  }
+
+  /* Ticket / catalogue card: hard ink border, inner hairline frame, offset print shadow. */
+  .index-card {
+    @apply relative bg-paper dark:bg-night-card border-[1.5px] border-ink dark:border-nightpaper/60
+           rounded-none shadow-card;
+  }
+  .index-card::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid currentColor;
+    opacity: 0.18;
+    pointer-events: none;
+  }
+  html.dark .index-card {
+    box-shadow: 4px 4px 0 0 rgba(237, 235, 221, 0.22);
+  }
+
+  /* Cards that are links: lift toward the light, then press back down on click. */
+  .index-card-interactive {
+    @apply transition-[transform,box-shadow] duration-150 ease-out;
+  }
+  .index-card-interactive:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 7px 7px 0 0 rgba(31, 36, 32, 0.85);
+  }
+  .index-card-interactive:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 0 rgba(31, 36, 32, 0.85);
+  }
+  html.dark .index-card-interactive:hover {
+    box-shadow: 7px 7px 0 0 rgba(237, 235, 221, 0.3);
+  }
+
+  /* Dotted leader line, like the dots between an item and its price on a menu or catalogue. */
+  .rule {
+    @apply border-t-2 border-dotted border-ink/35 dark:border-nightpaper/30;
+  }
+  .rule-double {
+    @apply border-t-[5px] border-double border-ink/80 dark:border-nightpaper/60;
+  }
+
+  .link-underline {
+    @apply relative no-underline bg-[linear-gradient(currentColor,currentColor)]
+           bg-no-repeat bg-[length:100%_2px] bg-[position:0_100%]
+           hover:bg-[length:0%_2px] transition-[background-size] duration-300;
+  }
+
+  /* Newspaper drop cap for the opening paragraph of a page. */
+  .drop-cap::first-letter {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    float: left;
+    font-size: 4.2em;
+    line-height: 0.82;
+    padding: 0.06em 0.1em 0 0;
+    color: #3B5D48;
+  }
+  html.dark .drop-cap::first-letter {
+    color: #6B9A7C;
+  }
+}

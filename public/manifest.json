@@ -1,0 +1,12 @@
+{
+  "name": "Yukti Sahu",
+  "short_name": "Yukti Sahu",
+  "description": "Field notes on software, systems, and the craft of building well.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#EDEBDE",
+  "theme_color": "#3B5D48",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
