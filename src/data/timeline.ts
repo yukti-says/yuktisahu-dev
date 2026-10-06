@@ -16,7 +16,7 @@ export const timeline: TimelineEntry[] = [
     year: '2024',
     title: 'Graduated BCA',
     summary: 'Completed the BCA program.',
-    detail: 'Completed the BCA program.',
+    detail: 'Completed the BCA program from Holkar Science college.',
   },
   {
     year: '2024',
@@ -25,7 +25,7 @@ export const timeline: TimelineEntry[] = [
     detail: 'Started an MCA at LNCT, Bhopal.',
   },
   {
-    year: '2025',
+    year: '2026',
     title: 'TCS offer',
     summary: 'Cracked the TCS offer through on-campus placement.',
     detail: 'Cracked the TCS offer through on-campus placement.',
